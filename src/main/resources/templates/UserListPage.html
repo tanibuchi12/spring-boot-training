@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>UserListPage</title>
+  </head>
+  <body>
+    <h1>User List</h1>
+    <form>
+      <table border="1">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>PASSWORD</th>
+            <th>MAIL-ADDRESS</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="user : ${userList}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.password}"></td>
+            <td th:text="${user.emailAddress}"></td>
+            <td>
+              <button
+                type="submit"
+                th:formaction="@{/users/edit/{id}(id=${user.id})}"
+              >
+                edit
+              </button>
+            </td>
+            <td>
+              <button
+                type="submit"
+                th:formaction="@{/users/delete/{userId}(userId=${user.id})}"
+              >
+                delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button type="submit" th:formaction="@{/users/showCreatePage}">
+        新規登録
+      </button>
+    </form>
+  </body>
+</html>

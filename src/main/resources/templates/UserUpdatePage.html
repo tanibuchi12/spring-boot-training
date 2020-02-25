@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>UserCreatePage</title>
+  </head>
+  <body>
+    <h1>User Create</h1>
+    <form>
+      <input
+        type="hidden"
+        th:field="${userForm.id}"
+        th:value="${userForm.id}"
+      />
+      <div>
+        <label>NAME</label>
+        <input
+          type="text"
+          th:field="${userForm.name}"
+          th:value="${userForm.name}"
+          required
+        />
+      </div>
+      <div>
+        <label>PASSWORD</label>
+        <!-- type="password"のフィールドはth:fieldだと初期値がセットされない -->
+        <input
+          type="password"
+          name="password"
+          th:value="${userForm.password}"
+          required
+        />
+      </div>
+      <div>
+        <label>EMAIL-ADDRESS</label>
+        <input
+          type="email"
+          th:field="${userForm.emailAddress}"
+          th:value="${userForm.emailAddress}"
+          required
+          placeholder="sample@example.com"
+        />
+      </div>
+      <button
+        type="submit"
+        th:formaction="@{/users/showListPage}"
+        formnovalidate
+      >
+        戻る
+      </button>
+      <button type="submit" th:formaction="@{/users/update}">更新</button>
+    </form>
+  </body>
+</html>
